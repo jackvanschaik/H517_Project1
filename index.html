@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project 1</title>
+	<meta charset="utf8"></meta>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="project.js"></script>
+</head>
+<body>
+    
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Project 1</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Main Visualization
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="design.html">Design Document</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.youtube.com/">YouTube Demo</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class = "container">
+        <div class = "row">
+            <div class="col-lg-6">
+                <h2>London's 1854 Cholera Epidemic</h2>
+                <p>Map of Cholera deaths, with streets and pumps</p>
+            </div>
+            <div class="col-lg-6">
+                <h3 id="total">Total Deaths: 571</h3>
+            </div>
+            
+        </div>
+        <div class = "row">
+            <div class="col-lg-6">
+                <svg id="main" width="600" height="600">
+            	    <g id = "streets"></g>
+            	    <g id = "labels"></g>
+            	    <g id = "pumps"></g>
+            	    <g id = "deaths"></g>
+            	    <g id = "debug"></g>
+            	</svg>
+            	
+            	<button type ="button" class="btn btn-light" id="tog_grid">Grid Cluster</button>
+                <button type ="button" class="btn btn-light" id="tog_pumps">Show Pumps</button>
+                <button type ="button" class="btn btn-light" id="tog_labels">Show Labels</button>
+                <button type ="button" class="btn btn-light" id="tog_streets">Show Streets</button>
+                <button type ="button" class="btn btn-light" id="tog_deaths">Show Deaths</button>
+            </div>
+            <div class="col-lg-6">
+                <h3>Death by Gender, Age, and Date</h3>
+                <svg id="gender" width="250" height="250">
+                    <g id = "male"></g>
+                    <g id = "gaxis" class = "axis_label"></g>
+                </svg>
+                
+                <svg id="age" width="350" height="250">
+                    <g id = "ages"></g>
+                    <g id = "ageaxis" class = "axis_label"></g>
+                </svg>
+                
+               <svg id="ts" width="600" height ="200">
+            	    <g id = "days"></g>
+            	    <g id = "fg"></g>
+            	    <g id = "tsaxis" class = "axis_label"></g>
+            	</svg>
+                Death Colors:
+                <button type ="button" class="btn btn-light" id="dc_none">Flat</button>
+                <button type ="button" class="btn btn-light" id="dc_gender">Gender</button>
+                <button type ="button" class="btn btn-light" id="dc_age">Age</button>
+        </div>
+    </div>
+    <!-- Hidden div for tooltip -->
+    <div id = "tooltip" class = "hidden"><p><span id="value"></span></p></div>
+	<!-- Javascript to kickoff visualization -->
+	<script> 
+	init_params();
+	init_ui();
+	start_viz(); 
+	</script>
+</body>
+
+</html>

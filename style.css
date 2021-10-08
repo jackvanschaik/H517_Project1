@@ -1,0 +1,86 @@
+/* General Styles */
+.street {
+    fill: transparent;
+    stroke: #111111;
+}
+
+/* Variables */
+.Death {
+    fill: #888;
+}
+
+/* For gender, picked a 3-class divering palette from color brewer */
+.Male {
+    fill: #67a9cf;
+}
+
+.Female {
+    fill: #ef8a62;
+}
+
+.Age0{
+    fill: #1b9e77;
+}
+.Age1{
+    fill: #d95f02;
+}
+.Age2{
+    fill: #7570b3;
+}
+.Age3{
+    fill: #e7298a;
+}
+.Age4{
+    fill: #66a61e;
+}
+.Age5{
+    fill: #e6ab02;
+}
+
+
+/* For Barplot Mouseover*/
+.hidden {
+    fill-opacity: 0.05;
+}
+
+.selected {
+    fill-opacity: 0.15;
+}
+
+/* CSS For Tooltop */
+/* This is was taken from Chapter 10 of the Murray book */
+#tooltip {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    top: 80px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#tooltip.hidden {
+    fill-opacity: 0;
+    display: none;
+}
+
+#tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+/* For grid arrangement */
+/* This utilizes the MDN documentation: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout */
+.divgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
