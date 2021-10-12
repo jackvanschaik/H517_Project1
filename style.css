@@ -47,6 +47,10 @@
     fill-opacity: 0.15;
 }
 
+.endpoint {
+    fill-opacity: 0.55;
+}
+
 /* CSS For Tooltop */
 /* This is was taken from Chapter 10 of the Murray book */
 #tooltip {

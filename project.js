@@ -26,6 +26,7 @@ function init_params() {
         T_DEATHS : true,
         T_GRID   : false,
         DTH_COL  : 0,
+        ENDPOINT : undefined
     }
     window.params = {};
     for (y in INIT_PARAMS) {
@@ -398,32 +399,66 @@ function draw_ts() {
         .attr("height", Height)
         .attr("class", function(d) {
             if (d.j >= g_("LEFT_SEL") & d.j <= g_("RIGHT_SEL")) {
-                return "selected";
+                if (d.j == g_("LEFT_SEL") | d.j == g_("RIGHT_SEL")) {
+                    return "endpoint";
+                }
+                else {
+                    return "selected";
+                }
             }
             else {
                 return "hidden";
             }
         })
-        .on("click", function(d) {
-            s_("SELECTED", d.j);
-            var left = g_("LEFT_SEL");
-            var right = g_("RIGHT_SEL");
-            if (d.j <= left) {
-                s_("LEFT_SEL", d.j);
+        .on("mousedown", function(d) {
+            if (d.j == g_("LEFT_SEL") | d.j == g_("RIGHT_SEL")) {
+                s_("ENDPOINT", d.j);
             }
-            else if (d.j >= right) {
-                s_("RIGHT_SEL", d.j)
+        })
+        .on("mouseup", function(d) {
+            var ep = g_("ENDPOINT");
+            if (ep != undefined) {
+                if (ep == g_("LEFT_SEL")) {
+                    if (d.j <= g_("RIGHT_SEL")) {
+                        s_("LEFT_SEL", d.j);
+                    }
+                    else {
+                        s_("LEFT_SEL", g_("RIGHT_SEL"));
+                        s_("RIGHT_SEL", d.j);
+                    }
+                }
+                if (ep == g_("RIGHT_SEL")) {
+                    if (d.j >= g_("LEFT_SEL")) {
+                        s_("RIGHT_SEL", d.j)
+                    }
+                    else {
+                        s_("RIGHT_SEL", g_("LEFT_SEL"));
+                        s_("LEFT_SEL", d.j);
+                    }
+                }
             }
             else {
-                var diff_l = Math.abs(left - d.j);
-                var diff_r = Math.abs(right - d.j);
-                if (diff_l < diff_r) {
+                var left = g_("LEFT_SEL");
+                var right = g_("RIGHT_SEL");
+                if (d.j <= left) {
                     s_("LEFT_SEL", d.j);
                 }
-                else {
-                    s_("RIGHT_SEL", d.j);
+                else if (d.j >= right) {
+                    s_("RIGHT_SEL", d.j)
                 }
+                else {
+                    var diff_l = Math.abs(left - d.j);
+                    var diff_r = Math.abs(right - d.j);
+                    if (diff_l < diff_r) {
+                        s_("LEFT_SEL", d.j);
+                    }
+                    else {
+                        s_("RIGHT_SEL", d.j);
+                    }
+                }
+                draw_all();
             }
+            s_("ENDPOINT",  undefined);
             draw_all();
         })
 }
